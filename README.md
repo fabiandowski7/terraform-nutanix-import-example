@@ -1,6 +1,6 @@
 # Manage existing Nutanix AHV virtual machines using Terraform
 
-Deploying and managing resources via Terraform has many of benefits. It is easy, you can version control your different configurations and you can make sure that state of virtual machines remains consistent with your declaration.
+Deploying and managing resources via Terraform has many of benefits. It is easy, you can version control your different configurations and you can make sure that the state of virtual machines remains consistent with your declaration.
 In most use-cases you will define your resources via Terraform code and deploy those workloads using Terraform. In some cases you may want to manage existing workloads (already provisioned manually?) running on top of Nutanix with Terraform. 
 Since Terraform will only manage resources that are part of its statefile, it will not manage existing/already deployed workloads. Luckily there is a way to get existing workloads into your statefile. 
 
@@ -22,7 +22,7 @@ Also analyse the current virtual machine layout:
 Based on this information we will model our virtual machine using Terraform resources.
 
 ## Model the virtual machine
-The next step is to model the virtual machine in code. The code repository contain example Terraform code. It contains following files:
+The next step is to model the virtual machine in code. The code repository contains example Terraform code. It contains following files:
 - `provider.tf`: Initialize the provider and set required provider version
 - `datasources.tf`: Perform lookups for required linked entities (image, cluster, subnet)
 - `variables.tf`: Variable declarations (optional and mandatory)
@@ -74,7 +74,7 @@ your Terraform state and will henceforth be managed by Terraform.
 
 ```
 You will notice that a new `terraform.tf` state file has been created. Terraform now has enough information to manage the resource.
-Run a `terraform plan` to verify if the import as successful.
+Run a `terraform plan` to verify if the import was successful.
 ```
 terraform plan
 ```
@@ -206,6 +206,6 @@ nutanix_virtual_machine.myImportedVM: Modifications complete after 1m15s [id=fcb
 Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
 ```
 
-Now we have a virtual machine running on Nutanix managed by Terraform that now has 2GB of memory and an additional disk of 40GB.
+Now we have a virtual machine running on Nutanix managed by Terraform that has 2GB of memory and an additional disk of 40GB.
 
 ![alt_text](https://github.com/yannickstruyf3/terraform-nutanix-import-example/raw/master/images/2_updated_vm.png )
